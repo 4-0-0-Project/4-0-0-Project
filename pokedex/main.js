@@ -12,7 +12,11 @@ const getPokemon = async (pokemon) =>{
  }
 }
 
-const renderPokemonPopUp = async(pokemon) => {
+const renderPokemonPopUp = async(pokemonData) => {
+  const contain = document.getElementsByClassName('img-container')
+  const img = document.createElement('img')
+  img.src = await pokemonData.sprites.front_default
+  contain.append(img)
   
 }
 
@@ -30,10 +34,8 @@ form.reset()
 }
 
 const main = () => {
-  // const form = document.querySelector('#pokedex-form')
-  // form.addEventListener('submit', searchForPokemon)
-  getPokemon('ditto')
-
+  const form = document.getElementById('pokemon-search-bar')
+  form.addEventListener('submit', searchForPokemon)
 }
 
 main()
