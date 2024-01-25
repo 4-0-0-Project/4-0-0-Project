@@ -12,22 +12,10 @@ const getPokemon = async (pokemon) =>{
  }
 }
  
-
-const getAllPokemon = async () =>{
-  try{
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`)
-    if(!response) throw Error(`Error: ${response.status}`)
-    const pokemonData = await response.json()
-    return pokemonData.results;
-   } catch(error) {
-    console.log(error.message)
-   }
-} 
-
 const clickAnyPokemon = async (e) =>{
   let el = e.target.closest("li")
    const data = await getPokemon(el.dataset.pokemonName);
-   renderPokemonDetails(data)
+   renderPokemonPopUp(data)
 }
 
 
@@ -68,9 +56,6 @@ const getAllPokemon = async () =>{
 // pokemon Details function
 
 const renderPokemonDetails = async (pokemonData) => {
- 
-  
-
   //set image
   const img = document.getElementById('pop-up-img');
   img.src = pokemonData.sprites.front_default;
