@@ -11,17 +11,41 @@ const getPokemon = async (pokemon) =>{
   console.log(error.message)
  }
 }
- const renderAllPokemon = async(allPokemonData) => {
+ 
+
+const getAllPokemon = async () =>{
+  try{
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`)
+    if(!response) throw Error(`Error: ${response.status}`)
+    const pokemonData = await response.json()
+    return pokemonData.results;
+   } catch(error) {
+    console.log(error.message)
+   }
+} 
+
+const clickAnyPokemon = async (e) =>{
+  let el = e.target.closest("li")
+   const data = await getPokemon(el.dataset.pokemonName);
+   renderPokemonDetails(data)
+}
+
+
+const renderAllPokemon = async(allPokemonData) => {
   const ul = document.getElementById('pokemon-ul')
   allPokemonData.forEach(async(pokemon) =>{
     const currPokemon = await getPokemon(pokemon.name)
-    console.log(currPokemon)
+
     let li = document.createElement('li')
     let img = document.createElement('img')
     let p = document.createElement('p')
 
+    li.dataset.pokemonName = pokemon.name
+    li.addEventListener('click', clickAnyPokemon)
+
     img.src = currPokemon.sprites.front_default
     p.textContent = pokemon.name
+
     li.classList.add('poke-card', 'flex-item') 
     li.appendChild(img)
     li.appendChild(p)
@@ -29,18 +53,6 @@ const getPokemon = async (pokemon) =>{
   })
 }
 
-
-const getAllPokemon = async () =>{
-  try{
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`)
-    if(!response) throw Error(`Error: ${response.status}`)
-    const pokemonData = await response.json()
-    console.log(pokemonData.results)
-    return pokemonData.results;
-   } catch(error) {
-    console.log(error.message)
-   }
-} 
 // pokemon Details function
 const renderPokemonDetails = async (pokemonData) => {
   const popUp = document.getElementById('pop-up')
@@ -65,7 +77,7 @@ const renderPokemonDetails = async (pokemonData) => {
 
   const abilitiesP = document.getElementById('pop-up-abilities');
   abilitiesP.textContent = `Abilities: ${pokemonData.abilities.map(ability => ability.ability.name).join(', ')}`
-  
+
 }
 
 
@@ -99,6 +111,7 @@ const searchForPokemon = async (e) => {
 const main = async() => {
   const form = document.getElementById('pokemon-search-bar')
   form.addEventListener('submit', searchForPokemon)
+
   const allPokemon = await getAllPokemon()
   renderAllPokemon(allPokemon)
 }
