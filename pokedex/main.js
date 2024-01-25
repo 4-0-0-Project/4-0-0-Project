@@ -11,8 +11,17 @@ const getPokemon = async (pokemon) =>{
   console.log(error.message)
  }
 }
-
- 
+const getAllPokemon = async () =>{
+  try{
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`)
+    if(!response) throw Error(`Error: ${response.status}`)
+    const pokemonData = await response.json()
+    console.log(pokemonData.results)
+    return pokemonData.results;
+   } catch(error) {
+    console.log(error.message)
+   }
+} 
 // pokemon Details function
 const renderPokemonDetails = async (pokemonData) => {
   const popUp = document.getElementById('pop-up')
@@ -69,10 +78,11 @@ const renderPokemonPopUp = async (pokemonData) => {
 
 const searchForPokemon = async (e) => {
   e.preventDefault();
+  e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
-  const formObj = Object.fromEntries(formData);
+    const form = e.target;
+    const formData = new FormData(form);
+    const formObj = Object.fromEntries(formData);
 
   const pokemondata = await getPokemon(formObj.pokemon)
   renderPokemonPopUp(pokemondata)
@@ -81,9 +91,11 @@ const searchForPokemon = async (e) => {
   form.reset()
 }
 
-const main = () => {
+const main = async() => {
   const form = document.getElementById('pokemon-search-bar')
   form.addEventListener('submit', searchForPokemon)
+  const allPokemon = await getAllPokemon()
+  renderAllPokemon(allPokemon)
 }
 
 main()
