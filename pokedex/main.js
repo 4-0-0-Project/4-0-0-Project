@@ -29,7 +29,7 @@ const getPokemon = async (pokemon) =>{
   })
 }
 
-
+const popUp = document.getElementById('pop-up') //global so it can access anywhere
 const getAllPokemon = async () =>{
   try{
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`)
@@ -45,7 +45,7 @@ const getAllPokemon = async () =>{
 
 const renderPokemonDetails = async (pokemonData) => {
  
-  const popUp = document.getElementById('pop-up')
+  
 
   //set image
   const img = document.getElementById('pop-up-img');
@@ -74,6 +74,8 @@ const renderPokemonPopUp = async (pokemonData) => {
   const img = document.querySelector('#pop-up>img')
   img.src = pokemonData.sprites.front_default;
   renderPokemonDetails(pokemonData);
+  popUp.style.display = 'block'     // parent container for pop up is default invisible - becomes visible when submit 
+  
 }
 
 
