@@ -42,9 +42,10 @@ const getAllPokemon = async () =>{
    }
 } 
 // pokemon Details function
-const renderPokemonDetails = async (pokemonData) => {
-  const popUp = document.getElementById('pop-up')
 
+const renderPokemonDetails = async (pokemonData) => {
+ 
+  const popUp = document.getElementById('pop-up')
 
   //set image
   const img = document.getElementById('pop-up-img');
