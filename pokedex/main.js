@@ -11,6 +11,25 @@ const getPokemon = async (pokemon) =>{
   console.log(error.message)
  }
 }
+ const renderAllPokemon = async(allPokemonData) => {
+  const ul = document.getElementById('pokemon-ul')
+  allPokemonData.forEach(async(pokemon) =>{
+    const currPokemon = await getPokemon(pokemon.name)
+    console.log(currPokemon)
+    let li = document.createElement('li')
+    let img = document.createElement('img')
+    let p = document.createElement('p')
+
+    img.src = currPokemon.sprites.front_default
+    p.textContent = pokemon.name
+    li.classList.add('poke-card', 'flex-item') 
+    li.appendChild(img)
+    li.appendChild(p)
+    ul.appendChild(li)
+  })
+}
+
+
 const getAllPokemon = async () =>{
   try{
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`)
@@ -46,21 +65,7 @@ const renderPokemonDetails = async (pokemonData) => {
 
   const abilitiesP = document.getElementById('pop-up-abilities');
   abilitiesP.textContent = `Abilities: ${pokemonData.abilities.map(ability => ability.ability.name).join(', ')}`
-
-
-
-  // const details = document.createElement('div')
-  // details.innerHTML = `
-  // <p>Name: ${pokemonData.name}</p>
-  // <p>Type: ${pokemonData.types.map(type => type.type.name).join(', ')}</p>
-  // <p>Height: ${pokemonData.height}</p>
-  // <p>Weight: ${pokemonData.weight}</p>
-  // <p>Abilities: ${pokemonData.abilities.map(ability => ability.ability.name).join(', ')}</p>
-  // `
-
-  // popUp.innerHTML = '';
-  // popUp.appendChild(details);
-
+  
 }
 
 
