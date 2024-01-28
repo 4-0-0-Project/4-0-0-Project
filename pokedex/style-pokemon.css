@@ -12,7 +12,6 @@ body {
     display: inline-block;
     vertical-align: middle;
     padding: 20px;
-    
   }
 
   #top-wrapper {
@@ -45,7 +44,7 @@ body {
 
 .poke-card {
     display: block;
-    width: calc((100% - 3 * 3px) / 3); /*4Adjust the width and gap as needed */
+    width: calc((130% - 3 * 3px) / 3); /*4Adjust the width and gap as needed */
     height: calc((100% - 1 * 1px) / 2); /* Adjust the height and gap as needed */
     box-shadow: 10px 10px rgb(137, 137, 137);
     background-color: #E5D2B3;
