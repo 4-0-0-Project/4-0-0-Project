@@ -1,9 +1,9 @@
 import './style.css'
 
-const getPokemon = async (pokemon) =>{
+export const getPokemon = async (pokemon) =>{
  try{
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-  if(!response) throw Error(`Error: ${response.status}`)
+  if(!response.ok) throw Error(`Error: ${response.status}`)
   const pokemonData = await response.json()
   // console.log(pokemonData)
   return pokemonData;
@@ -11,11 +11,16 @@ const getPokemon = async (pokemon) =>{
   console.log(error.message)
  }
 }
+
+export const getPokemonStats = async (pokemon) =>{
+  console.log(pokemon)
+}
  
 const clickAnyPokemon = async (e) =>{
   let el = e.target.closest("li")
    const data = await getPokemon(el.dataset.pokemonName);
    renderPokemonPopUp(data)
+   window.scrollTo(0, 0);
 }
 
 
@@ -45,7 +50,7 @@ const popUp = document.getElementById('pop-up') //global so it can access anywhe
 const getAllPokemon = async () =>{
   try{
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`)
-    if(!response) throw Error(`Error: ${response.status}`)
+    if(!response.ok) throw Error(`Error: ${response.status}`)
     const pokemonData = await response.json()
     console.log(pokemonData.results)
     return pokemonData.results;
@@ -75,7 +80,6 @@ const renderPokemonDetails = async (pokemonData) => {
 
   const abilitiesP = document.getElementById('pop-up-abilities');
   abilitiesP.textContent = `Abilities: ${pokemonData.abilities.map(ability => ability.ability.name).join(', ')}`
-
 }
 
 
@@ -114,6 +118,9 @@ const main = async() => {
 
   const allPokemon = await getAllPokemon()
   renderAllPokemon(allPokemon)
+
+  const pokemon = await getPokemon('ditto')
+  getPokemonStats(pokemon)
 }
 
 main()
