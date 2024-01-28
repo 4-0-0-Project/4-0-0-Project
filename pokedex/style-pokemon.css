@@ -6,12 +6,11 @@ body {
     background-color: #D4AF92;
   }
   h1 {
-    /* font-size: 3.2em;
-    line-height: 1.1; */
     font-family:Georgia, 'Times New Roman', Times, serif;
     display: inline-block;
     vertical-align: middle;
     padding: 20px;
+    font-size: 50px;
     
   }
 
@@ -23,25 +22,15 @@ body {
   #logo-image {
     height: auto;
     width: 100px;
+    margin-top: 20%;
     margin-right: 10px;
 }
-
-#pokemon-ul {
-    overflow: hidden;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns */
-    grid-template-rows: repeat(30, 1fr); /* 30 rows */
-    gap: 5px; /* Adjust the gap as needed */
-    width: 80%;
-    height: 100vh; /* Adjust the height as needed */
-    padding: 5%;
-    margin-top: 70px;
-    background-color: #F5E1BF;
-    color: black;
-    border-style: solid;
-    border-color: black;
+#search-wrap{
+    display: inline-block;
+    padding: 20px;
+    padding-left: 20rem;
 }
+
 
 .poke-card {
     display: block;
@@ -65,7 +54,7 @@ body {
 }
 
 #pokemon-display{
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items:start;
     flex-wrap: wrap;
@@ -134,5 +123,128 @@ body {
 
 button {
     border-radius: 50px;
+}
+
+@media(min-width: 0px){
+    #pokemon-ul{
+        overflow: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 150, 1fr;
+        gap: 1rem;
+        gap: 5px; /* Adjust the gap as needed */
+        width: 80%;
+        height: 100vh; /* Adjust the height as needed */
+        padding: 5%;
+        margin-top: 70px;
+        background-color: #F5E1BF;
+        color: black;
+        border-style: solid;
+        border-color: black;
+    }
+    #search-wrap{
+        padding-bottom: 20px;
+        padding-left: 4px;
+    }
+}
+
+@media (min-width: 600px){
+    #pokemon-ul{
+        overflow: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 150, 1fr;
+        gap: 1rem;
+        gap: 5px; /* Adjust the gap as needed */
+        width: 80%;
+        height: 100vh; /* Adjust the height as needed */
+        padding: 5%;
+        margin-top: 70px;
+        background-color: #F5E1BF;
+        color: black;
+        border-style: solid;
+        border-color: black;
+    }
+    #search-wrap{
+        display: inline-block;
+        padding-bottom: 20px;
+        padding-left: 0px
+    }
+}
+
+@media (min-width: 700px){
+    #pokemon-ul{
+        overflow: hidden;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(2fr, 1fr);
+        grid-template-rows: repeat(75, 1fr) ;
+        gap: .5rem;
+        gap: 5px; /* Adjust the gap as needed */
+        width: 80%;
+        height: 100vh; /* Adjust the height as needed */
+        padding: 5%;
+        margin-top: 70px;
+        background-color: #F5E1BF;
+        color: black;
+        border-style: solid;
+        border-color: black;
+    }
+
+    #search-wrap{
+        display: inline-block;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 850px) {
+    #pokemon-ul{
+        overflow: hidden;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(50, 1fr); /* 30 rows */
+        gap: .5rem;
+        gap: 5px; /* Adjust the gap as needed */
+        width: 80%;
+        height: 100vh; /* Adjust the height as needed */
+        padding: 5%;
+        margin-top: 70px;
+        background-color: #F5E1BF;
+        color: black;
+        border-style: solid;
+        border-color: black;
+    }
+    
+    #search-wrap{
+        display: inline-block;
+        padding: 20px;
+        padding-left: 13rem;
+    }
+}
+
+@media (min-width:1300px) {
+    #pokemon-ul {
+        overflow: hidden;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 columns */
+        grid-template-rows: repeat(30, 1fr); /* 30 rows */
+        gap: 5px; /* Adjust the gap as needed */
+        width: 80%;
+        height: 100vh; /* Adjust the height as needed */
+        padding: 5%;
+        margin-top: 70px;
+        background-color: #F5E1BF;
+        color: black;
+        border-style: solid;
+        border-color: black;
+    }
+
+    #search-wrap{
+        display: inline-block;
+        padding: 20px;
+        padding-left: 20rem;
+    }
 }
 
